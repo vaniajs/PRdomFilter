@@ -33,8 +33,8 @@
             <td>
                 <input type="text" placeholder="Masukkan Nama"><br><br />
                 <input type="number" placeholder="Masukkan Umur"><br><br />
-                <input type="radio" name="gender" class="sex" value="male" checked>Pria
-                <input type="radio" name="gender" class="sex" value="female">Wanita<br><br />
+                <input type="radio" name="gender" class="sex" value="Pria" checked>Pria
+                <input type="radio" name="gender" class="sex" value="Wanita">Wanita<br><br />
                 <input type="text" placeholder="Pekerjaan"><br><br />
                 <input type="button" value="Submit" onclick="fnTambahData()"><br><br />
                 <i>Filter berdasarkan</i><br />
@@ -75,10 +75,10 @@
         }
 
         var fnInputGender = () => {
-           var x = document.querySelectorAll('sex')
+           var x = document.querySelectorAll('.sex')
             for (var i=0 ; i<x.length; i++){
-               if(document.querySelectorAll('sex')[i].checked){
-                var hasil = document.querySelectorAll('sex')[i].value
+               if(document.querySelectorAll('.sex')[i].checked){
+                var hasil = document.querySelectorAll('.sex')[i].value
                }
             }
             return hasil
@@ -120,7 +120,7 @@
                 document.getElementsByTagName('input')[0].style.backgroundColor = "white"
                 document.getElementsByTagName('input')[1].style.backgroundColor = "white"
                 document.getElementsByTagName('input')[4].style.backgroundColor = "white"
-                alert( inputNama + inputGender + inputUmur + inputJob )
+                //alert( inputNama + inputGender + inputUmur + inputJob )
 
                 var newMan = new Manusia(inputNama, inputUmur, inputGender, inputJob)
                 var list = data.push(newMan)
