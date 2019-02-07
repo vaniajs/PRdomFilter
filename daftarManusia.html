@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daftar Manusia</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 5px solid black;
+        padding: 30px;
+        border-collapse: collapse
+    }
+
+    table.table2,
+    th,
+    td,
+    tr {
+        border: 1px solid black;
+        padding: 15px;
+        border-collapse: collapse
+    }
+</style>
+
+<body>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Daftar Manusia</h1>
+    <table>
+        <tr>
+            <td>
+                <input type="text" placeholder="Masukkan Nama"><br><br />
+                <input type="number" placeholder="Masukkan Umur"><br><br />
+                <input type="radio" name="gender" class="sex" value="male" checked>Pria
+                <input type="radio" name="gender" class="sex" value="female">Wanita<br><br />
+                <input type="text" placeholder="Pekerjaan"><br><br />
+                <input type="button" value="Submit" onclick="fnTambahData()"><br><br />
+                <i>Filter berdasarkan</i><br />
+                <input type="button" value="Nama" onclick="fnFilterNama()">
+                <input type="button" value="Umur" onclick="fnFilterUmur()">
+                <input type="button" value="Kelamin" onclick="fnFilterGender()">
+                <input type="button" value="Pekerjaan" onclick="fnFilterPekerjaan()">
+
+            </td>
+        </tr>
+
+    </table><br/>
+
+    <table id="table2">
+        <thead>
+                <td>Nama</td>
+                <td>Umur</td>
+                <td>Gender</td>
+                <td>Pekerjaan</td>
+        </thead>
+        <tbody id="isi"></tbody>
+
+    </table>
+
+    <p id='alert'></p>
+</body>
+
+    <script>
+        var data = []
+
+        class Manusia {
+            constructor(nama, usia, kelamin, pekerjaan) {
+                this.nama = nama;
+                this.umur = usia;
+                this.gender = kelamin;
+                this.job = pekerjaan;
+            }
+        }
+
+        var fnInputGender = () => {
+           var x = document.querySelectorAll('sex')
+            for (var i=0 ; i<x.length; i++){
+               if(document.querySelectorAll('sex')[i].checked){
+                var hasil = document.querySelectorAll('sex')[i].value
+               }
+            }
+            return hasil
+
+        }
+        
+        function tampilData(arr) {
+            var tampil = ''
+            for (var i = 0; i < arr.length; i++) {
+                tampil += ` <tr>
+                                <td>${arr[i].nama}</td>
+                                <td>${arr[i].umur}</td>
+                                <td>${arr[i].kelamin}</td>
+                                <td>${arr[i].job}</td>
+                                </tr> `
+            }
+            document.getElementById('isi').innerHTML = tampil
+            // document.getElementById('id').innerHTML = ''
+
+        }
+
+        var fnTambahData = () => {
+            var selektor = document.getElementsByTagName('input')
+            var inputNama = selektor[0].value
+            var inputUmur = selektor[1].value
+            var inputGender = fnInputGender()
+            var inputJob = selektor[4].value
+            if (inputNama == "" || inputUmur == "" || inputJob == "") {
+                document.getElementsByTagName('input')[0].style.backgroundColor = "pink"
+                document.getElementsByTagName('input')[0].placeholder = "Nama harus diisi"
+                document.getElementsByTagName('input')[1].style.backgroundColor = "pink"
+                document.getElementsByTagName('input')[1].placeholder = "Umur harus diisi"
+                document.getElementsByTagName('input')[4].style.backgroundColor = "pink"
+                document.getElementsByTagName('input')[4].placeholder = "Pekerjaan harus diisi"
+            }
+            else {
+                // document.getElementById('alert').innerHTML = `Data berhasil ditambah `
+                // document.getElementById('alert').style.color = "green" 
+                document.getElementsByTagName('input')[0].style.backgroundColor = "white"
+                document.getElementsByTagName('input')[1].style.backgroundColor = "white"
+                document.getElementsByTagName('input')[4].style.backgroundColor = "white"
+                alert( inputNama + inputGender + inputUmur + inputJob )
+
+                var newMan = new Manusia(inputNama, inputUmur, inputGender, inputJob)
+                var list = data.push(newMan)
+                tampilData(list)
+            }
+        }
+
+        
+
+
+    </script>
+
+
+
+
+</html>
