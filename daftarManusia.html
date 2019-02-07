@@ -91,7 +91,7 @@
                 tampil += ` <tr>
                                 <td>${arr[i].nama}</td>
                                 <td>${arr[i].umur}</td>
-                                <td>${arr[i].kelamin}</td>
+                                <td>${arr[i].gender}</td>
                                 <td>${arr[i].job}</td>
                                 </tr> `
             }
@@ -123,8 +123,8 @@
                 //alert( inputNama + inputGender + inputUmur + inputJob )
 
                 var newMan = new Manusia(inputNama, inputUmur, inputGender, inputJob)
-                var list = data.push(newMan)
-                tampilData(list)
+                data.push(newMan)
+                tampilData(data)
             }
         }
 
